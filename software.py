@@ -2,11 +2,13 @@ import cmd
 from riposte import Riposte
 import time
 import sys
-import pandas
+import pandas as pd
+pd.options.display.max_rows=999999
+
 
 BANNER= """
 
-list of commands: \n 1. Test 1 \n 2. Test 2 \n 3. Test 3 \n 0. Exit
+list of commands: \n 1. Display all records \n 2. Test 2 \n 3. Test 3 \n 0. Exit
 
 """
 Command = Riposte(prompt="Superstore:-$ ", banner=BANNER)
@@ -18,8 +20,10 @@ def delay_print(s):
 		time.sleep(0.03)
 
 @Command.command("1")
-def test1():
-	print("test 1")
+def DisplayAll():
+	df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
+	new_df = df.dropna()
+	print(new_df.to_string())
 
 @Command.command("2")
 def test2():
