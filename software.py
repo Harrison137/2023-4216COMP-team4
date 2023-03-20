@@ -8,7 +8,7 @@ pd.options.display.max_rows=999999
 
 BANNER= """
 
-list of commands: \n 1. Display all records \n 2. Test 2 \n 3. Test 3 \n 0. Exit
+list of commands: \n 1. Display all records \n 2. table info \n 3. Test 3 \n 0. Exit
 
 """
 Command = Riposte(prompt="Superstore:-$ ", banner=BANNER)
@@ -30,8 +30,8 @@ def DisplayAll():
 	print(new_df.to_string())
 
 @Command.command("2")
-def test2():
-	print("test 2")
+def info():
+	print(new_df.info())
 
 @Command.command("3")
 def test3():
