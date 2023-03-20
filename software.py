@@ -19,10 +19,14 @@ def delay_print(s):
 		sys.stdout.flush()
 		time.sleep(0.03)
 
+
+
+df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
+new_df = df.dropna()
+
+
 @Command.command("1")
 def DisplayAll():
-	df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
-	new_df = df.dropna()
 	print(new_df.to_string())
 
 @Command.command("2")
