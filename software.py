@@ -2,6 +2,7 @@ import cmd
 from riposte import Riposte
 import time
 import sys
+import pandas
 
 BANNER= """
 
