@@ -15,7 +15,20 @@ def option1():
     plt.show()
 
 def option2():
-    print("hello world")
+    #the average profit per segment
+    df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
+    #calculate the average profit per segment
+    avgSegmentProfit = df.groupby('Segment')['Profit'].mean()
+    avgSegProfit = pd.DataFrame(avgSegmentProfit)
+    print (avgSegProfit)
+    avgSegProfit.plot(kind='pie', subplots = True, colors=['r', 'g', 'b'], autopct='%.2f', fontsize=20)
+    plt.title('Average Profit Per Segment')
+    plt.ylabel('Profit')
+    plt.show()
+
+
+    
+
 
 def options():
     print("[0] To leave")
