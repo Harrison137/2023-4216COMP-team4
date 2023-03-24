@@ -1,5 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
 def option1():
-    print("hello world")
+    #bar chart to display average sales per region
+    df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
+    #calculate the average sales per region
+    avg_sales = df.groupby('Region')['Quantity'].mean()
+
+    #plot the results as a bar chart
+    avg_sales.plot(kind='bar')
+    plt.title('Average Sales per Region')
+    plt.xlabel('Region')
+    plt.ylabel('Average Sales')
+    plt.show()
+
 def option2():
     print("hello world")
 
