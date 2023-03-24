@@ -21,6 +21,7 @@ def option2():
     avgSegmentProfit = df.groupby('Segment')['Profit'].mean()
     avgSegProfit = pd.DataFrame(avgSegmentProfit)
     print (avgSegProfit)
+    #creates pie chart for the data
     avgSegProfit.plot(kind='pie', subplots = True, colors=['r', 'g', 'b'], autopct='%.2f', fontsize=20)
     plt.title('Average Profit Per Segment')
     plt.ylabel('Profit')
