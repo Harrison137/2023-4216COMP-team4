@@ -58,13 +58,40 @@ def option3():
         print(f"{index}, Total sales = ${row['Sales']:.2f}, Total Profit = ${row['Profit']:.2f}")
     print()
     
+def option4():
+    # Calculate the number of products available
+    num_products = df['Product ID'].nunique()
 
+    # Calculate the average sale price and profit per product
+    avg_sale_price = df['Sales'].mean()
+    avg_profit = df['Profit'].mean()
+
+    # Print the results
+    print("\nAverage Product Sales Information:")
+    print("Number of Products Available:", num_products)
+    print("Average Sale price per Product: ${:.2f}".format(avg_sale_price))
+    print("Average Profit per Product: ${:.2f}\n".format(avg_profit))
+
+def option5():
+    # group the data by category and calculate total sales and profit
+    category_group = df.groupby('Category').agg({'Sales': 'sum', 'Profit': 'sum'})
+
+    # print the total sales and profit for each category
+    print('\nTotal sales and profit for each product category:')
+    for index, row in category_group.iterrows():
+        category_name = index
+        total_sales = '${:,.2f}'.format(row['Sales'])
+        total_profit = '${:,.2f}'.format(row['Profit'])
+        print(f'{category_name}: Total sales = {total_sales}, Total profit = {total_profit}')
+    print("")
 
 def options():
     print("[0] To leave")
     print("[1] Option 1")
     print("[2] Option 2")
     print("[3] Option 3: Top and Bottom performing Products")
+    print("[4] Option 4: Average Product Sales Information")
+    print("[5] Option 5: Total Sales and Profits by Category")
     
 
 
@@ -79,3 +106,7 @@ while True:
         option2()
     elif option == 3:
         option3()
+    elif option == 4:
+        option4()
+    elif option == 5: 
+        option5()
