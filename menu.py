@@ -192,6 +192,39 @@ def option8():
     # Print the data
     print(sales_by_state.to_string(index=False))
 
+def option9():
+    #Average discount rate compared to average sales
+    avg_discount = df.groupby('Region')['Discount'].mean()
+    avg_sales = df.groupby('Region')['Quantity'].mean()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+    ax1.plot(avg_discount)
+    ax1.set_title('Average Discount by Region')
+    ax2.plot(avg_sales)
+    ax2.set_title('Average Quantity by Region')
+    plt.show()
+
+def option10():
+    #Average discount rate compared to average sales
+    
+
+    avg_discount = df.groupby('State')['Discount'].mean()
+    avg_sales = df.groupby('State')['Quantity'].mean()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+    ax1.plot(avg_discount)
+    ax1.set_title('Average Discount by Country')
+    #The following 2 lines adjust the code so that the names of the states are flipped
+    ax1.set_xticks(range(len(avg_discount)))
+    ax1.set_xticklabels(avg_discount.index, rotation=90)
+    ax2.plot(avg_sales)
+    ax2.set_title('Average Quantity by Country')
+    ax2.set_xticks(range(len(avg_sales)))
+    ax2.set_xticklabels(avg_sales.index, rotation=90)
+    plt.show()
+
+
+    
+
+
 def options():
     print("[0] To leave")
     print("[1] Option 1")
@@ -202,6 +235,8 @@ def options():
     print("[6] Option 6: Total Sales by State")
     print("[7] Option 7: Total Profits by State")
     print("[8] Option 8: Total Sales by State with Populations")
+    print("[9] Option 9: Average sales per region compared to average discount per region")
+    print("[10] Option 10: Average sales per state compared to average discount per state")
 
 
 while True:
@@ -225,3 +260,7 @@ while True:
         option7()
     elif option == 8: 
         option8()
+    elif option == 9: 
+        option9()
+    elif option == 10: 
+        option10()
