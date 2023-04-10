@@ -224,10 +224,18 @@ def option10():
     
     
 def option11():
-    # Group the data by region and calculate the total profit for each region
     region_profit = df.groupby('Region')['Profit'].sum()
     print("\n", region_profit, "\n")
-    print("")
+    
+    #This Calculates the profit margin for each region
+def option12():
+    region_data = df.groupby('Region').agg({'Profit': 'sum', 'Sales': 'sum'})
+    region_data['Profit Margin'] = (region_data['Profit'] / region_data['Sales']) * 100
+
+    #Sort the data by profit margin in descending order and print results
+    region_data = region_data.sort_values('Profit Margin', ascending=False)
+    print("Profit Margin by Region(%):\n")
+    print(region_data[['Profit Margin']])
 
 
     
@@ -245,7 +253,8 @@ def options():
     print("[8] Option 8: Total Sales by State with Populations")
     print("[9] Option 9: Average sales per region compared to average discount per region")
     print("[10] Option 10: Average sales per state compared to average discount per state")
-    print("[11] option 11: Total profits by region")
+    print("[11] Option 11: Total profits by region")
+    print("[12] Option 12: Profit margin by region")
 
 
 while True:
@@ -275,3 +284,5 @@ while True:
         option10()
     elif option == 11:
         option11()
+    elif option == 12:
+        option12()
