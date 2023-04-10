@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
 
@@ -220,6 +221,13 @@ def option10():
     ax2.set_xticks(range(len(avg_sales)))
     ax2.set_xticklabels(avg_sales.index, rotation=90)
     plt.show()
+    
+    
+def option11():
+    # Group the data by region and calculate the total profit for each region
+    region_profit = df.groupby('Region')['Profit'].sum()
+    print("\n", region_profit, "\n")
+    print("")
 
 
     
@@ -237,6 +245,7 @@ def options():
     print("[8] Option 8: Total Sales by State with Populations")
     print("[9] Option 9: Average sales per region compared to average discount per region")
     print("[10] Option 10: Average sales per state compared to average discount per state")
+    print("[11] option 11: Total profits by region")
 
 
 while True:
@@ -264,3 +273,5 @@ while True:
         option9()
     elif option == 10: 
         option10()
+    elif option == 11:
+        option11()
