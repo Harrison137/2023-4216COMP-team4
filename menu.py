@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
 
@@ -218,6 +219,21 @@ def option10():
     ax2.set_xticks(range(len(avg_sales)))
     ax2.set_xticklabels(avg_sales.index, rotation=90)
     plt.show()
+    
+    
+def option11():
+    region_profit = df.groupby('Region')['Profit'].sum()
+    print("\n", region_profit, "\n")
+    
+    #This Calculates the profit margin for each region
+def option12():
+    region_data = df.groupby('Region').agg({'Profit': 'sum', 'Sales': 'sum'})
+    region_data['Profit Margin'] = (region_data['Profit'] / region_data['Sales']) * 100
+
+    #Sort the data by profit margin in descending order and print results
+    region_data = region_data.sort_values('Profit Margin', ascending=False)
+    print("Profit Margin by Region(%):\n")
+    print(region_data[['Profit Margin']])
 
 def option11():
     #Print profit margin per sub category
@@ -245,6 +261,9 @@ def options():
     print("[8] Option 8: Total Sales by State with Populations")
     print("[9] Option 9: Average sales per region compared to average discount per region")
     print("[10] Option 10: Average sales per state compared to average discount per state")
+    print("[11] Option 11: Total profits by region")
+    print("[12] Option 12: Profit margin by region")
+
     print("[11] Option 11: Profit margin per sub category")
 
 
@@ -273,5 +292,9 @@ while True:
         option9()
     elif option == 10: 
         option10()
-    elif option == 11: 
+
+    elif option == 11:
         option11()
+    elif option == 12:
+        option12()
+
