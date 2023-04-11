@@ -296,7 +296,7 @@ def options():
     print("[13] Option 13: Profit margin per sub category")
     print("[14] Option 14: Show top 10 states by quantity of items bought")
     print("[15] Option 15: Most profitable item in a state")
-    print("[14] Option 14: Print average waiting time per product")
+    print("[16] Option 16: Print average waiting time per product")
 
 while True:
     options()
