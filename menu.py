@@ -278,6 +278,16 @@ def option16():
     #Group product name by avg shipping time and print it
     avg_shipping_time = df.groupby('Product Name')['shipping time'].mean()
     print(avg_shipping_time)
+
+def option17():
+    #Calculates the total profit for each ship mode and the percentage of total profit for each ship mode
+    total_profit = df.groupby('Ship Mode')['Profit'].sum()
+    percent_profit = total_profit / total_profit.sum() * 100
+
+    #Prints the percentage of total profit for each ship mode
+    print("\nPercentage of Total Profit by Ship Mode:\n")
+    for mode, percent in percent_profit.items():
+        print(f"{mode}: {percent:.2f}%\n")
     
 def options():
     print("[0] To leave")
@@ -297,6 +307,7 @@ def options():
     print("[14] Option 14: Show top 10 states by quantity of items bought")
     print("[15] Option 15: Most profitable item in a state")
     print("[16] Option 16: Print average waiting time per product")
+    print("[17] Option 17: Show most profitable shipping modes")
 
 while True:
     options()
@@ -335,4 +346,6 @@ while True:
         option15()
     elif option == 16:
         option16()
+    elif option == 17:
+        option17()
 
