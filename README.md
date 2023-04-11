@@ -1,2 +1,2 @@
 # 2023-4216COMP-team4
-computer science workshop group repository LJMU
+To run my code, type the option from the menu into the terminal, and then the visualisation will pop up

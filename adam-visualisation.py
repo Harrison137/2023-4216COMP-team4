@@ -5,6 +5,7 @@ import seaborn as sns
 df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
 
 
+
 def option1():
     #bar chart to display average sales per region
     df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
@@ -44,16 +45,8 @@ def option10():
     ax2.set_xticks(range(len(avg_sales)))
     ax2.set_xticklabels(avg_sales.index, rotation=90)
     plt.show()
- 
-def option13():
-    #Print profit margin per sub category
-    #find profit margin for each row
-    pm = (df['Profit'] / df['Sales']) * 100
-    #create new column for pm in the dataframe
-    df['Profit margin'] = pm
-    #Match sub cat to profit margin
-    subcat_pm = df.groupby('Sub-Category')['Profit margin'].mean()
-    print(subcat_pm)
+    
+
 
 
     
@@ -62,9 +55,10 @@ def option13():
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
+    print("[8] Option 8: Total Sales by State with Populations")
     print("[9] Option 9: Average sales per region compared to average discount per region")
     print("[10] Option 10: Average sales per state compared to average discount per state")
-    print("[13] Option 13: Profit margin per sub category")
+
 
 
 while True:
@@ -74,10 +68,8 @@ while True:
         break
     elif option == 1:
         option1()
+
     elif option == 9: 
         option9()
     elif option == 10: 
         option10()
-    elif option == 13:
-        option13()
-
