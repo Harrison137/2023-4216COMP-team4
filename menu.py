@@ -245,9 +245,32 @@ def option13():
     subcat_pm = df.groupby('Sub-Category')['Profit margin'].mean()
     print(subcat_pm)
     
-def option14():
-    #Average shipping time per product
 
+def option14():
+    state_data = df.groupby('State')['Quantity'].sum()
+    top_states = state_data.sort_values(ascending=False).head(10)
+    # Output the top 10 states and their quantity
+    print('\n Top 10 States by Quantity of items bought: \n')
+    for State, Quantity in top_states.items():
+        print(f'{State}: {Quantity} \n')
+
+    
+def option15():
+    #User input for a state and filter the data to only include this state
+    stateInput = input('\nEnter a state: ')
+    stateData = df[df['State'] == stateInput]
+
+    #Group the data by product name and sum the profit for each product and then retrieve the name and profit of the most profitable product
+    product_data = stateData.groupby('Product Name')['Profit'].sum()
+    mostProfitable = product_data.idxmax()
+    profit = product_data.max()
+
+    #Print the name of the most profitable product and the profit
+    print(f'\nThe most profitable item in {stateInput} is "{mostProfitable}" with a profit of ${profit:.2f}.\n')
+        
+
+def option16():
+    #Average shipping time per product
     #Set shipping time variable to ship date - order date
     df['shipping time'] = pd.to_datetime(df['Ship Date']) - pd.to_datetime(df['Order Date'])
     #Put it into days
@@ -255,10 +278,7 @@ def option14():
     #Group product name by avg shipping time and print it
     avg_shipping_time = df.groupby('Product Name')['shipping time'].mean()
     print(avg_shipping_time)
-
     
-    
-
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -274,6 +294,8 @@ def options():
     print("[11] Option 11: Total profits by region")
     print("[12] Option 12: Profit margin by region")
     print("[13] Option 13: Profit margin per sub category")
+    print("[14] Option 14: Show top 10 states by quantity of items bought")
+    print("[15] Option 15: Most profitable item in a state")
     print("[14] Option 14: Print average waiting time per product")
 
 while True:
@@ -301,7 +323,6 @@ while True:
         option9()
     elif option == 10: 
         option10()
-
     elif option == 11:
         option11()
     elif option == 12:
@@ -310,4 +331,8 @@ while True:
         option13()
     elif option == 14:
         option14()
+    elif option == 15:
+        option15()
+    elif option == 16:
+        option16()
 
