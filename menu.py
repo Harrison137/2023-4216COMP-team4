@@ -245,7 +245,13 @@ def option13():
     subcat_pm = df.groupby('Sub-Category')['Profit margin'].mean()
     print(subcat_pm)
 
-
+def option14():
+    state_data = df.groupby('State')['Quantity'].sum()
+    top_states = state_data.sort_values(ascending=False).head(10)
+    # Output the top 10 states and their quantity
+    print('\n Top 10 States by Quantity of items bought: \n')
+    for State, Quantity in top_states.items():
+        print(f'{State}: {Quantity} \n')
     
     
 
@@ -264,6 +270,7 @@ def options():
     print("[11] Option 11: Total profits by region")
     print("[12] Option 12: Profit margin by region")
     print("[13] Option 13: Profit margin per sub category")
+    print("[14] Option 14: Show top 10 states by quantity of items bought")
 
 
 while True:
@@ -291,11 +298,11 @@ while True:
         option9()
     elif option == 10: 
         option10()
-
     elif option == 11:
         option11()
     elif option == 12:
         option12()
     elif option == 13:
         option13()
-
+    elif option == 14:
+        option14()
