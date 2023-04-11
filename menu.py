@@ -253,7 +253,19 @@ def option14():
     for State, Quantity in top_states.items():
         print(f'{State}: {Quantity} \n')
     
-    
+def option15():
+    #User input for a state and filter the data to only include this state
+    stateInput = input('\nEnter a state: ')
+    stateData = df[df['State'] == stateInput]
+
+    #Group the data by product name and sum the profit for each product and then retrieve the name and profit of the most profitable product
+    product_data = stateData.groupby('Product Name')['Profit'].sum()
+    mostProfitable = product_data.idxmax()
+    profit = product_data.max()
+
+    #Print the name of the most profitable product and the profit
+    print(f'\nThe most profitable item in {stateInput} is "{mostProfitable}" with a profit of ${profit:.2f}.\n')
+        
 
 def options():
     print("[0] To leave")
@@ -271,6 +283,7 @@ def options():
     print("[12] Option 12: Profit margin by region")
     print("[13] Option 13: Profit margin per sub category")
     print("[14] Option 14: Show top 10 states by quantity of items bought")
+    print("[15] Option 15: Most profitable item in a state")
 
 
 while True:
@@ -306,3 +319,5 @@ while True:
         option13()
     elif option == 14:
         option14()
+    elif option == 15:
+        option15()
