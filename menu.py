@@ -222,18 +222,18 @@ def option10():
     
     
 def option11():
-    region_profit = df.groupby('Region')['Profit'].sum()
-    print("\n", region_profit, "\n")
+    regionProfit = df.groupby('Region')['Profit'].sum()
+    print("\n Region profit($): \n", regionProfit, "\n")
     
     #This Calculates the profit margin for each region
 def option12():
-    region_data = df.groupby('Region').agg({'Profit': 'sum', 'Sales': 'sum'})
-    region_data['Profit Margin'] = (region_data['Profit'] / region_data['Sales']) * 100
+    regionData = df.groupby('Region').agg({'Profit': 'sum', 'Sales': 'sum'})
+    regionData['Profit Margin'] = (regionData['Profit'] / regionData['Sales']) * 100
 
     #Sort the data by profit margin in descending order and print results
-    region_data = region_data.sort_values('Profit Margin', ascending=False)
-    print("Profit Margin by Region(%):\n")
-    print(region_data[['Profit Margin']])
+    regionData = regionData.sort_values('Profit Margin', ascending=False)
+    print("\nProfit Margin by Region(%):\n")
+    print(regionData[['Profit Margin']])
 
 def option13():
     #Print profit margin per sub category
@@ -247,11 +247,11 @@ def option13():
     
 
 def option14():
-    state_data = df.groupby('State')['Quantity'].sum()
-    top_states = state_data.sort_values(ascending=False).head(10)
+    stateData = df.groupby('State')['Quantity'].sum()
+    topStates = stateData.sort_values(ascending=False).head(10)
     # Output the top 10 states and their quantity
     print('\n Top 10 States by Quantity of items bought: \n')
-    for State, Quantity in top_states.items():
+    for State, Quantity in topStates.items():
         print(f'{State}: {Quantity} \n')
 
     
