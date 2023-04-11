@@ -244,6 +244,7 @@ def option13():
     #Match sub cat to profit margin
     subcat_pm = df.groupby('Sub-Category')['Profit margin'].mean()
     print(subcat_pm)
+    
 
 def option14():
     stateData = df.groupby('State')['Quantity'].sum()
@@ -252,6 +253,7 @@ def option14():
     print('\n Top 10 States by Quantity of items bought: \n')
     for State, Quantity in topStates.items():
         print(f'{State}: {Quantity} \n')
+
     
 def option15():
     #User input for a state and filter the data to only include this state
@@ -267,6 +269,16 @@ def option15():
     print(f'\nThe most profitable item in {stateInput} is "{mostProfitable}" with a profit of ${profit:.2f}.\n')
         
 
+def option16():
+    #Average shipping time per product
+    #Set shipping time variable to ship date - order date
+    df['shipping time'] = pd.to_datetime(df['Ship Date']) - pd.to_datetime(df['Order Date'])
+    #Put it into days
+    df['shipping time'] = df['shipping time'].dt.days 
+    #Group product name by avg shipping time and print it
+    avg_shipping_time = df.groupby('Product Name')['shipping time'].mean()
+    print(avg_shipping_time)
+    
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -284,7 +296,7 @@ def options():
     print("[13] Option 13: Profit margin per sub category")
     print("[14] Option 14: Show top 10 states by quantity of items bought")
     print("[15] Option 15: Most profitable item in a state")
-
+    print("[14] Option 14: Print average waiting time per product")
 
 while True:
     options()
@@ -321,3 +333,6 @@ while True:
         option14()
     elif option == 15:
         option15()
+    elif option == 16:
+        option16()
+
