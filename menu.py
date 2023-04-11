@@ -35,12 +35,26 @@ def option2():
     plt.ylabel('Profit Margin (%)')
     plt.show()
 
+def option3():
+    
+    state_data = df.groupby('State')['Quantity'].sum()
+
+    top_states = state_data.sort_values(ascending=False).head(10)
+
+    #This creates a pie chart to display the data
+    plt.pie(top_states.values, labels=top_states.index, autopct='%1.1f%%')
+    plt.title('Quantity of items bought - Top 10 States')
+    plt.show()
+
 
 def options():
     print("[0] To leave")
     print("[1] Bar chart of profit by region")
     print("[2] Bar chart of profit margins for each region")
+    print("[3] Show quantity of items bought as a pie chart for the top 10 states")
 
+
+#running code
 while True:
     options()
     option = int(input())
@@ -50,3 +64,5 @@ while True:
         option1()
     elif option == 2:
         option2()
+    elif option == 3:
+        option3()
