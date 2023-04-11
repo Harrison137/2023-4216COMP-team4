@@ -235,7 +235,7 @@ def option12():
     print("Profit Margin by Region(%):\n")
     print(region_data[['Profit Margin']])
 
-def option11():
+def option13():
     #Print profit margin per sub category
     #find profit margin for each row
     pm = (df['Profit'] / df['Sales']) * 100
@@ -263,8 +263,7 @@ def options():
     print("[10] Option 10: Average sales per state compared to average discount per state")
     print("[11] Option 11: Total profits by region")
     print("[12] Option 12: Profit margin by region")
-
-    print("[11] Option 11: Profit margin per sub category")
+    print("[13] Option 13: Profit margin per sub category")
 
 
 while True:
@@ -297,4 +296,6 @@ while True:
         option11()
     elif option == 12:
         option12()
+    elif option == 13:
+        option13()
 
