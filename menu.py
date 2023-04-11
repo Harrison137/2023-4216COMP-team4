@@ -206,18 +206,16 @@ def option9():
 
 def option10():
     #Average discount rate compared to average sales
-    
-
     avg_discount = df.groupby('State')['Discount'].mean()
     avg_sales = df.groupby('State')['Quantity'].mean()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     ax1.plot(avg_discount)
-    ax1.set_title('Average Discount by Country')
+    ax1.set_title('Average Discount by State')
     #The following 2 lines adjust the code so that the names of the states are flipped
     ax1.set_xticks(range(len(avg_discount)))
     ax1.set_xticklabels(avg_discount.index, rotation=90)
     ax2.plot(avg_sales)
-    ax2.set_title('Average Quantity by Country')
+    ax2.set_title('Average Sales by State')
     ax2.set_xticks(range(len(avg_sales)))
     ax2.set_xticklabels(avg_sales.index, rotation=90)
     plt.show()
@@ -237,14 +235,24 @@ def option12():
     print("Profit Margin by Region(%):\n")
     print(region_data[['Profit Margin']])
 
+def option11():
+    #Print profit margin per sub category
+    #find profit margin for each row
+    pm = (df['Profit'] / df['Sales']) * 100
+    #create new column for pm in the dataframe
+    df['Profit margin'] = pm
+    #Match sub cat to profit margin
+    subcat_pm = df.groupby('Sub-Category')['Profit margin'].mean()
+    print(subcat_pm)
+
 
     
-
+    
 
 def options():
     print("[0] To leave")
-    print("[1] Option 1")
-    print("[2] Option 2")
+    print("[1] Option 1: Average sales per region")
+    print("[2] Option 2: Average sales per segment")
     print("[3] Option 3: Top and Bottom performing Products")
     print("[4] Option 4: Average Product Sales Information")
     print("[5] Option 5: Total Sales and Profits by Category")
@@ -255,6 +263,8 @@ def options():
     print("[10] Option 10: Average sales per state compared to average discount per state")
     print("[11] Option 11: Total profits by region")
     print("[12] Option 12: Profit margin by region")
+
+    print("[11] Option 11: Profit margin per sub category")
 
 
 while True:
@@ -282,7 +292,9 @@ while True:
         option9()
     elif option == 10: 
         option10()
+
     elif option == 11:
         option11()
     elif option == 12:
         option12()
+
