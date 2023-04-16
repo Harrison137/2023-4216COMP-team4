@@ -288,6 +288,70 @@ def option17():
     print("\nPercentage of Total Profit by Ship Mode:\n")
     for mode, percent in percent_profit.items():
         print(f"{mode}: {percent:.2f}%\n")
+
+def option18():
+    # Create a scatter plot with regression line
+    sns.lmplot(x='Sales', y='Profit', data=df)
+
+    # Set the title and axis labels
+    plt.title('Sales vs. Profit')
+    plt.xlabel('Sales')
+    plt.ylabel('Profit')
+
+    # Show the plot
+    plt.show()
+
+def option19():
+    # Create a boxplot of the profit by region and category
+    sns.boxplot(x='Region', y='Profit', hue='Category', data=df)
+
+    # Set the title and axis labels
+    plt.title('Profit by Region and Category')
+    plt.xlabel('Region')
+    plt.ylabel('Profit')
+
+    # Show the plot
+    plt.show()
+
+def option20():
+    # Convert the Order Date column to a datetime object
+    df['Order Date'] = pd.to_datetime(df['Order Date'])
+
+    # Group the data by Order Date and sum the sales
+    daily_sales = df.groupby('Order Date')['Sales'].sum()
+
+    # Create a line chart of the sales over time
+    plt.plot(daily_sales.index, daily_sales.values)
+
+    # Set the title and axis labels
+    plt.title('Sales Over Time')
+    plt.xlabel('Date')
+    plt.ylabel('Sales')
+
+    # Set the x-axis tick frequency and format
+    plt.xticks(pd.date_range(daily_sales.index.min(), daily_sales.index.max(), freq='6M'), rotation=45)
+
+    # Show the plot
+    plt.show()
+
+def option21():
+    # Group the data by category and sub-category and sum the sales
+    category_subcategory_sales = df.groupby(['Category', 'Sub-Category'])['Sales'].sum().unstack()
+
+    # Create a heatmap of the sales by category and sub-category
+    sns.heatmap(category_subcategory_sales, cmap='Blues')
+
+    # Set the title and axis labels
+    plt.title('Sales by Category and Sub-Category')
+    plt.xlabel('Sub-Category')
+    plt.ylabel('Category')
+
+    # Show the plot
+    plt.show()
+
+
+
+
     
 def options():
     print("[0] To leave")
@@ -308,6 +372,17 @@ def options():
     print("[15] Option 15: Most profitable item in a state")
     print("[16] Option 16: Print average waiting time per product")
     print("[17] Option 17: Show most profitable shipping modes")
+    print("[18] Option 18: Show sales vs profit")
+    print("[19] Option 19: Profit by region and category")
+    print("[20] Option 20: Sales over time")
+    print("[21] Option 20: Heatmap of sales by catergory and sub-category")
+
+
+
+
+
+
+
 
 while True:
     options()
@@ -348,4 +423,11 @@ while True:
         option16()
     elif option == 17:
         option17()
-
+    elif option == 18:
+        option18()    
+    elif option == 19:
+        option19()    
+    elif option == 20:
+        option20()    
+    elif option == 21:
+        option21()
