@@ -375,7 +375,7 @@ def options():
     print("[18] Option 18: Show sales vs profit")
     print("[19] Option 19: Profit by region and category")
     print("[20] Option 20: Sales over time")
-    print("[21] Option 20: Heatmap of sales by catergory and sub-category")
+    print("[21] Option 21: Heatmap of sales by catergory and sub-category")
 
 
 
