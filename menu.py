@@ -349,8 +349,17 @@ def option21():
     # Show the plot
     plt.show()
 
+def option22():
+    #Show average discount rate per product
+    #Create dataframe with the average discount, and round it to 3 decimal places
+     avg_discount = df.groupby('Product Name')['Discount'].mean().round(3)
+     print(avg_discount)
 
-
+def option23():
+    #Show shipping mode usage per region
+    #Create a dataframe with Region, Ship mode, and a count of how many times it was used
+    shipMode = df.groupby('Region')['Ship Mode'].value_counts()
+    print(shipMode)
 
     
 def options():
@@ -376,7 +385,9 @@ def options():
     print("[19] Option 19: Profit by region and category")
     print("[20] Option 20: Sales over time")
     print("[21] Option 21: Heatmap of sales by catergory and sub-category")
-
+    print("[22] Option 22: Average discount rate per product.")
+    print("[23] Option 23: Show shipping mode usage per region")
+    
 
 
 
@@ -431,3 +442,7 @@ while True:
         option20()    
     elif option == 21:
         option21()
+    elif option == 22:
+        option22()
+    elif option == 23:
+        option23()
