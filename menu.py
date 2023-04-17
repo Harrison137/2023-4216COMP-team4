@@ -361,6 +361,20 @@ def option23():
     shipMode = df.groupby('Region')['Ship Mode'].value_counts()
     print(shipMode)
 
+def option24():
+    #show the most popular city per state
+    cityState = df.groupby('State') ['City'].max()
+    print (cityState)
+    
+def option25():
+    # a bar chart to show total profit through every order day
+    salesPerDay = df.groupby('Order Date') ['Profit'].sum()
+    print (salesPerDay)    
+    salesPerDay.plot(kind='bar')
+    plt.title('Total Profit Per Day')
+    plt.xlabel('Order Date')
+    plt.ylabel('Total Profit')
+    plt.show()
     
 def options():
     print("[0] To leave")
@@ -387,6 +401,8 @@ def options():
     print("[21] Option 21: Heatmap of sales by catergory and sub-category")
     print("[22] Option 22: Average discount rate per product.")
     print("[23] Option 23: Show shipping mode usage per region")
+    print("[24] Option 24: Most Popular City Per State")
+    print("[25] Option 25: Total Profit Per Day")
     
 
 
@@ -446,3 +462,7 @@ while True:
         option22()
     elif option == 23:
         option23()
+    elif option == 24:
+        option24()
+    elif option == 25:
+        option25()
