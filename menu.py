@@ -402,6 +402,16 @@ def option27():
     # Print the resulting Series
     print(totals_by_ship_mode)
 
+def option28():
+    # a bar chart to show total orders per month
+    orders_by_month = df.groupby('Month').size()
+    print (orders_by_month)    
+    orders_by_month.plot(kind='bar')
+    plt.title('Total Orders per Month')
+    plt.xlabel('Month')
+    plt.ylabel('Total Orders')
+    plt.show()
+
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -431,6 +441,7 @@ def options():
     print("[25] Option 25: Total Profit Per Day")
     print("[26] Option 26: Total Orders per Month")
     print("[27] Option 27: Total Number of Shipping Types in each State")
+    print("[28] Option 28: Bar Chart Showing Total Orders per Month")
 
 while True:
     options()
@@ -491,3 +502,5 @@ while True:
         option26()
     elif option == 27:
         option27()
+    elif option == 28:
+        option28()
