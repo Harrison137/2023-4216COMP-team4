@@ -412,6 +412,23 @@ def option28():
     plt.ylabel('Total Orders')
     plt.show()
 
+def option29():
+    # a bar chart to show total shipping methods per state
+    # Get user input for state
+    state = input("Enter state: ")
+
+    # Filter the DataFrame to only include the specified state
+    state_df = df[df['State'] == state]
+
+    # Group the data by Ship Mode, and calculate the count for each group
+    totals_by_ship_mode = state_df.groupby('Ship Mode')['Ship Mode'].count()
+
+    totals_by_ship_mode = state_df.groupby('Ship Mode')['Ship Mode'].count()
+    print (totals_by_ship_mode)    
+    totals_by_ship_mode.plot(kind='pie')
+    plt.title('Total Number of Ship Modes per State')
+    plt.show()
+
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -442,6 +459,7 @@ def options():
     print("[26] Option 26: Total Orders per Month")
     print("[27] Option 27: Total Number of Shipping Types in each State")
     print("[28] Option 28: Bar Chart Showing Total Orders per Month")
+    print("[29] Option 29: Bar Chart Showing Total Number of Ship Modes per State")
 
 while True:
     options()
@@ -504,3 +522,5 @@ while True:
         option27()
     elif option == 28:
         option28()
+    elif option == 29:
+        option29()
