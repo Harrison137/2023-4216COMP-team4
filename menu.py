@@ -377,22 +377,18 @@ def option25():
     plt.show()
 
 def option26():
-    #read in data from superstore.csv
-    data = pd.read_csv('superstore.csv')
+     # Convert the Order Date column to datetime format
+     df['Order Date'] = pd.to_datetime(df['Order Date'], format='%m/%d/%Y')
 
-    #convert the 'Order Date' coloumn to a pandas datetime object
-    data['Order Date'] = pd.to_datetime(data['Order Date'])
+     # Create a new column for the month of each order
+     df['Month'] = df['Order Date'].dt.month
 
-    #group the data by month and sum the profit for each month
-    monthly_profit = data.groupby(pd.Grouper(key='Order Date', freq='M'))['Profit'].sum().reset_index()
+     # Group the orders by month and count the number of orders in each month
+     orders_by_month = df.groupby('Month').size()
 
-    #find the month with the highest profit
-    most_profitable_month = monthly_profit.loc[monthly_profit['Profit'].idxmax()]
+     # Print the number of orders in each month
+     print(orders_by_month)
 
-    #print the results
-    print("The most profitable month was {} with a profit of ${:,.2f}".format(most_profitable_month['Order Date'].strftime('%B %Y'), most_profitable_month['Profit']))
-
-    
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -420,13 +416,7 @@ def options():
     print("[23] Option 23: Show shipping mode usage per region")
     print("[24] Option 24: Most Popular City Per State")
     print("[25] Option 25: Total Profit Per Day")
-    print("[26] Option 26: Most Profitable Month")
-
-
-
-
-
-
+    print("[26] Option 26: Total Orders per Month")
 
 while True:
     options()
