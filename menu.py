@@ -389,6 +389,19 @@ def option26():
      # Print the number of orders in each month
      print(orders_by_month)
 
+def option27():
+    # Get user input for state
+    state = input("Enter state: ")
+
+    # Filter the DataFrame to only include the specified state
+    state_df = df[df['State'] == state]
+
+    # Group the data by Ship Mode, and calculate the count for each group
+    totals_by_ship_mode = state_df.groupby('Ship Mode')['Ship Mode'].count()
+
+    # Print the resulting Series
+    print(totals_by_ship_mode)
+
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -417,6 +430,7 @@ def options():
     print("[24] Option 24: Most Popular City Per State")
     print("[25] Option 25: Total Profit Per Day")
     print("[26] Option 26: Total Orders per Month")
+    print("[27] Option 27: Total Number of Shipping Types in each State")
 
 while True:
     options()
@@ -475,3 +489,5 @@ while True:
         option25()
     elif option == 26:
         option26()
+    elif option == 27:
+        option27()
