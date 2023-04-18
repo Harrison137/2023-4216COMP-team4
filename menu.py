@@ -483,3 +483,5 @@ while True:
         option24()
     elif option == 25:
         option25()
+    elif option == 26:
+        option26()
