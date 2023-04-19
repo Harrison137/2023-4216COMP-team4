@@ -459,7 +459,7 @@ def options():
     print("[26] Option 26: Total Orders per Month")
     print("[27] Option 27: Total Number of Shipping Types in each State")
     print("[28] Option 28: Bar Chart Showing Total Orders per Month")
-    print("[29] Option 29: Bar Chart Showing Total Number of Ship Modes per State")
+    print("[29] Option 29: Pie Chart Showing Total Number of Ship Modes per State")
 
 while True:
     options()
