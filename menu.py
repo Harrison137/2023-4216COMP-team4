@@ -429,6 +429,29 @@ def option29():
     plt.title('Total Number of Ship Modes per State')
     plt.show()
 
+def option30():
+    # Group the data by category and calculate the profit margin
+    category_profit = df.groupby('Category')['Profit'].sum() / df.groupby('Category')['Sales'].sum()
+
+    # Find the category with the highest profit margin
+    most_profitable_category = category_profit.idxmax()
+
+    # Print the result
+    print(f"The most profitable category is {most_profitable_category}.")
+
+def option31():
+    # Calculate the order value for each row
+    df['Order Value'] = df['Quantity'] * df['Sales']
+
+    # Calculate the average order value by region
+    region_avg_order_value = df.groupby('Region')['Order Value'].mean()
+
+    # Print the result
+    for region, avg_order_value in region_avg_order_value.items():
+        print(f"The average order value in {region} is ${avg_order_value:.2f}.")
+
+
+
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -460,6 +483,8 @@ def options():
     print("[27] Option 27: Total Number of Shipping Types in each State")
     print("[28] Option 28: Bar Chart Showing Total Orders per Month")
     print("[29] Option 29: Bar Chart Showing Total Number of Ship Modes per State")
+    print("[30] Option 30: The most profitable category")
+    print("[31] Option 31: Average order value in each region")
 
 while True:
     options()
@@ -524,3 +549,7 @@ while True:
         option28()
     elif option == 29:
         option29()
+    elif option == 30:
+        option30()
+    elif option == 31:
+        option31()        
