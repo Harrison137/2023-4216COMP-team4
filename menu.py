@@ -438,7 +438,25 @@ def option30():
     groupedAndSorted = groupedWithAll.sort_values('Quantity', ascending=False).head(10)
     # Title + Print the best selling category (by quantity) for each state
     print("\n Top 10 Best states that sold the most technology")
-    print(groupedAndSorted[['State', 'Category', 'Quantity']])  
+    print(groupedAndSorted[['State', 'Category', 'Quantity']])
+def option31():
+    #groups by region and sums the discounts
+    discount_by_highest = df.groupby('Region').sum({'Discount': 'sum'}).sort_values('Discount', ascending=False)
+    #gives a title
+    print("\nAmount Given In Discounts By Region (Highest to Lowest):")
+    #loops through all the regions
+    for region, row in discount_by_highest.iterrows():
+        #prints region and tells the total discount (2 d.p)
+        print(f"{region}: ${row['Discount']:.2f} in discounts")
+def option32():
+    #groups by sub categorys and sums the quantity
+    QuantityofSubcat = df.groupby('Sub-Category').sum({'Quantity': 'sum'}).sort_values('Quantity', ascending=False)
+    #title
+    print("\nAmount of Quantity by Sub-Category")
+        #loops through until all subcats are mentioned
+    for SubCat, row in QuantityofSubcat.iterrows():
+        #print statement for sub cat name and the quantity sold (0 d.p)
+        print(f"{SubCat}: {row['Quantity']:.0f} Units sold")
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -471,6 +489,8 @@ def options():
     print("[28] Option 28: Bar Chart Showing Total Orders per Month")
     print("[29] Option 29: Pie Chart Showing Total Number of Ship Modes per State")
     print("[30] Option 30: Top 10 Best states that sold the most technology")
+    print("[31] Option 31: Total Discounts By Region")
+    print("[32] Option 32: Quantity per Sub-Category")
 
 while True:
     options()
@@ -537,3 +557,7 @@ while True:
         option29()
     elif option == 30:
         option30()
+    elif option == 31:
+        option31()
+    elif option == 32:
+        option32()
