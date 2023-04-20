@@ -429,7 +429,16 @@ def option29():
     totals_by_ship_mode.plot(kind='pie')
     plt.title('Total Number of Ship Modes per State')
     plt.show()
-
+def option30():
+    #this makes sure that only categorys that are technolgy are counted
+    onlyTechnologyCata = df[df['Category'] == 'Technology']
+    #groups the tech catagory by state and calculates the sum of the quantity for each group
+    groupedWithAll = onlyTechnologyCata.groupby(['State', 'Category']).agg({'Quantity': 'sum'}).reset_index()
+    #sort the data by decending order by quantity (the top 10 states)
+    groupedAndSorted = groupedWithAll.sort_values('Quantity', ascending=False).head(10)
+    # Title + Print the best selling category (by quantity) for each state
+    print("\n Top 10 Best states that sold the most technology")
+    print(groupedAndSorted[['State', 'Category', 'Quantity']])  
 def options():
     print("[0] To leave")
     print("[1] Option 1: Average sales per region")
@@ -461,6 +470,7 @@ def options():
     print("[27] Option 27: Total Number of Shipping Types in each State")
     print("[28] Option 28: Bar Chart Showing Total Orders per Month")
     print("[29] Option 29: Pie Chart Showing Total Number of Ship Modes per State")
+    print("[30] Option 30: Top 10 Best states that sold the most technology")
 
 while True:
     options()
@@ -525,3 +535,5 @@ while True:
         option28()
     elif option == 29:
         option29()
+    elif option == 30:
+        option30()
