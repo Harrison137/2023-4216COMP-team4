@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 df = pd.read_csv('Sample - Superstore.csv', encoding='windows-1252')
 
@@ -46,16 +45,13 @@ def option4():
     df['Year'] = df['Order Date'].dt.year
     #grouping the year column with the sum of the discounts for the year
     gbYear = df.groupby(['Year'])['Discount'].sum()
-
     #creates plot graph and title and names of axis'
     plt.plot(gbYear.index, gbYear.values)
     plt.title('Discount Per Year')
     plt.xlabel('Date')
     plt.ylabel('Discount')
-
     # Set the x-axis writing to 45 degrees so its readable
     plt.xticks(rotation=45)
-
     # Show the plot
     plt.show()
 #prints oprions to the user
@@ -79,4 +75,3 @@ while True:
         option3()
     elif option==4:
         option4()
-
